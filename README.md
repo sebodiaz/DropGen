@@ -37,7 +37,7 @@ We use [`uv`](https://docs.astral.sh/uv/) to manage dependencies. To get started
 
 2. **Clone the repository and install dependencies:**
    ```bash
-   git clone <repo-url> && cd DropGen
+   git clone https://github.com/sebodiaz/DropGen.git && cd DropGen
    uv sync
    ```
 
