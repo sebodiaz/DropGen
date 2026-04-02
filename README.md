@@ -6,7 +6,7 @@
 
 This is the reference implementation for `DropGen`. Please see the instructions below on how to use the codebase.
 
-If you questions about the paper please contact `sdd@mit.edu`. If you encounter issues with the repo, please open an issue. Thanks!
+If you have any questions about the paper please contact `sdd@mit.edu`. If you encounter issues with the repo, please open an issue. Thanks!
 
 ## Table of Contents
 - [To-Do](#to-do)
