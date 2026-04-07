@@ -1,6 +1,11 @@
 # Why Invariance is Not Enough for Biomedical Domain Generalization and How to Fix It
 
 <p align="center">
+  <a href="https://arxiv.org/abs/2604.02564"><img src="https://img.shields.io/badge/arXiv-2604.02564-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://github.com/sebodiaz/DropGen/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+</p>
+
+<p align="center">
   <img src="media/teaser.png" alt="Teaser figure"/>
 </p>
 
@@ -9,6 +14,7 @@ This is the reference implementation for `DropGen`. Please see the instructions 
 If you have any questions about the paper, please contact `sdd@mit.edu`. If you encounter issues with the repo, please open an issue. Thanks!
 
 ## Table of Contents
+- [Citation](#citation)
 - [To-Do](#to-do)
 - [Requirements](#requirements)
 - [Setup](#setup)
@@ -17,6 +23,17 @@ If you have any questions about the paper, please contact `sdd@mit.edu`. If you 
 - [Code Organization](#code-organization)
 - [File Structure](#file-structure)
 
+
+## Citation
+If you find this work useful, please cite:
+```bibtex
+@article{diaz2025dropgen,
+  title={Why Invariance is Not Enough for Biomedical Domain Generalization and How to Fix It},
+  author={Diaz, S., Golland, P., Adalsteinsson, E., and Dey, Neel},
+  journal={arXiv preprint arXiv:2604.02564},
+  year={2025}
+}
+```
 
 ## To-Do
 - [ ] Implement with nnUNet.
