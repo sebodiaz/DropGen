@@ -77,10 +77,10 @@ class Options:
         self.parser.add_argument(
             "--method", type=str, default="erm", choices=[
                                                           "erm",
-                                                          "dropgen",   # `Ours`
+                                                          "maskgen",   # `Ours`
                                                           ]
         )
-        self.parser.add_argument("--dropout_prob", type=float, default=0.75)
+        self.parser.add_argument("--masking_rate", type=float, default=0.75)
         self.parser.add_argument(
             "--num_subjects",
             type=int,
@@ -152,7 +152,7 @@ class Options:
         torch.backends.cudnn.allow_tf32 = True
 
     def _apply_method_overrides(self, args):
-        if args.method == "dropgen":
+        if args.method == "maskgen":
             args.in_channels = 17
         elif args.method in ["gin", "gin+ipa"]:
             args.in_channels = 3
@@ -295,8 +295,8 @@ class Options:
         
         #
         # run names are usually [method]_[dataset]_[optional tags]_seed[seed]
-        # for example a DropGen model with dataset AMOS, channel dropout 75, and batch normalization
-        # might look like "dropgen_amos_cd75_bn_seed1234"
+        # for example a MaskGen model with dataset AMOS, masking rate 75, and batch normalization
+        # might look like "maskgen_amos_mr75_bn_seed1234"
         #
         
         if args.run_name:
@@ -306,12 +306,12 @@ class Options:
                 args.dataset = parts[1]
 
             # parse optional tags // most are for the `Stable Representations Enable Generalization in Medical Image Segmentation` paper
-            if "cd" in args.run_name:
-                cd_part = [p for p in parts if p.startswith("cd")]
-                if cd_part:
+            if "mr" in args.run_name:
+                mr_part = [p for p in parts if p.startswith("mr")]
+                if mr_part:
                     try:
-                        cd_value = int(cd_part[0].replace("cd", ""))
-                        args.dropout_prob = cd_value / 100.0
+                        mr_value = int(mr_part[0].replace("mr", ""))
+                        args.masking_rate = mr_value / 100.0
                     except ValueError:
                         pass
             

@@ -2,14 +2,14 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2604.02564"><img src="https://img.shields.io/badge/arXiv-2604.02564-b31b1b.svg" alt="arXiv"></a>
-  <a href="https://github.com/sebodiaz/DropGen/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://github.com/sebodiaz/MaskGen/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
 </p>
 
 <p align="center">
   <img src="media/teaser.png" alt="Teaser figure"/>
 </p>
 
-This is the reference implementation for `DropGen`. Please see the instructions below on how to use the codebase.
+This is the reference implementation for `MaskGen`. Please see the instructions below on how to use the codebase.
 
 If you have any questions about the paper, please contact `sdd@mit.edu`. If you encounter issues with the repo, please open an issue. Thanks!
 
@@ -27,7 +27,7 @@ If you have any questions about the paper, please contact `sdd@mit.edu`. If you 
 ## Citation
 If you find this work useful, please cite:
 ```bibtex
-@article{diaz2025dropgen,
+@article{diaz2025maskgen,
   title={Why Invariance is Not Enough for Biomedical Domain Generalization and How to Fix It},
   author={Diaz, S., Golland, P., Adalsteinsson, E., and Dey, Neel},
   journal={arXiv preprint arXiv:2604.02564},
@@ -54,7 +54,7 @@ We use [`uv`](https://docs.astral.sh/uv/) to manage dependencies. To get started
 
 2. **Clone the repository and install dependencies:**
    ```bash
-   git clone https://github.com/sebodiaz/DropGen.git && cd DropGen
+   git clone https://github.com/sebodiaz/MaskGen.git && cd MaskGen
    uv sync
    ```
 
@@ -128,11 +128,11 @@ Below are some examples on how to launch a training run using `uv`. The specific
 
 ```bash
 uv run main.py \
-    --run_name dropgen_hvsmr \
+    --run_name maskgen_hvsmr \
     --data_dir /path/to/your/dataset \
     --dataset hvsmr \
-    --method dropgen \
-    --dropout_prob 0.75 \
+    --method maskgen \
+    --masking_rate 0.75 \
     --max_steps 250_000 \
     --eval_interval 1_000
 ```
@@ -141,11 +141,11 @@ Additionally, if you want to train in the "few-shot" regime, use the `--num_subj
 
 ```bash
 uv run main.py \
-    --run_name dropgen_hvsmr_fewshot \
+    --run_name maskgen_hvsmr_fewshot \
     --data_dir /path/to/your/dataset \
     --dataset hvsmr \
-    --method dropgen \
-    --dropout_prob 0.75 \
+    --method maskgen \
+    --masking_rate 0.75 \
     --num_subjects 5 \
     --max_steps 40_000
 ```
@@ -154,22 +154,22 @@ The `--num_subjects` flag limits training to only N randomly selected subjects. 
 
 ```bash
 uv run main.py \
-    --run_name dropgen_hvsmr_fewshot \
+    --run_name maskgen_hvsmr_fewshot \
     --data_dir /path/to/your/dataset \
     --dataset hvsmr \
-    --method dropgen \
-    --dropout_prob 0.75 \
+    --method maskgen \
+    --masking_rate 0.75 \
     --num_subjects 5 \
     --max_steps 40_000 \
     --split_csv /path/to/splits.csv
 ```
 
 ## Code Organization
-When a training run is launched, a folder is created in a `./runs/` directory. For example, if you launch a run with the name `dropgen_hvsmr`, the run directory would be `./runs/dropgen_hvsmr`. In this directory, three files are created throughout training: `best.pth`, `latest.pth`, and `val_history.json`.
+When a training run is launched, a folder is created in a `./runs/` directory. For example, if you launch a run with the name `maskgen_hvsmr`, the run directory would be `./runs/maskgen_hvsmr`. In this directory, three files are created throughout training: `best.pth`, `latest.pth`, and `val_history.json`.
 
 ## File Structure
 ```
-DropGen/
+MaskGen/
 ├── README.md
 ├── pyproject.toml          # project dependencies
 ├── main.py                 # entry point — training, validation, and testing

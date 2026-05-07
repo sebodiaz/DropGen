@@ -15,7 +15,7 @@ class Loss(torch.nn.Module):
         # define a mapping from match to loss functions
         self.loss_map = {
             'erm': monai.losses.DiceCELoss(include_background=False, to_onehot_y=True, softmax=True),
-            'dropgen': monai.losses.DiceCELoss(include_background=False, to_onehot_y=True, softmax=True),
+            'maskgen': monai.losses.DiceCELoss(include_background=False, to_onehot_y=True, softmax=True),
         }
 
         if self.opts.method not in self.loss_map:

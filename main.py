@@ -64,8 +64,8 @@ def main(opts: argparse.Namespace):
                         feat_maps = feat_ex(inputs)
                         inputs = torch.cat([inputs, feat_maps], dim=1) # concatenate feature maps to inputs
                         inputs = torch.nn.functional.dropout3d(
-                            inputs, p=opts.dropout_prob, training=True
-                        )  # some dropout for regularization
+                            inputs, p=opts.masking_rate, training=True
+                        )  # some masking for regularization
 
                 outputs = unet(inputs)
                 losses = criterion(outputs, labels)
@@ -177,7 +177,7 @@ def validate(
         include_background=False, reduction="mean_batch", get_not_nans=True
     )
 
-    if opts.method == "dropgen" and feat_ex is not None:
+    if opts.method == "maskgen" and feat_ex is not None:
         model = network.InferenceExtractor(opts, feat_ex, model)
 
     dice_metric.reset()

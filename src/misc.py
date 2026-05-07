@@ -134,7 +134,7 @@ def wandb_log(opts: argparse.Namespace, dice_scores: dict, step: int, log_val: f
 
 
 def load_feature_extractor(opts: argparse.Namespace):
-    if opts.method == "dropgen":
+    if opts.method == "maskgen":
         feat_ex = network.Unet(
             dimension=3,
             input_nc=1,
